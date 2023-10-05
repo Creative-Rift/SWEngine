@@ -52,16 +52,11 @@ target_include_directories(${EXEC} PUBLIC ${HEADER})
 
 ## SETUP DEPENDENCIES
 ## <=====================================>
-if (WIN32)
-    message(${PREFIX_MESSAGE} "Preparing dependencies for windows...")
-    # include(cmake/windows.cmake)
-    set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
-    find_package(glfw REQUIRED)
-    target_link_libraries(${EXEC} glfw)
-
-else()
-    message(FATAL_ERROR "System not supported!")
-endif()
+message(${PREFIX_MESSAGE} "Preparing dependencies for " ${CMAKE_SYSTEM_NAME} "...")
+# include(cmake/windows.cmake)
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+find_package(glfw REQUIRED)
+target_link_libraries(${EXEC} glfw)
 ## <=====================================>
 
 if (${CMAKE_BUILD_TYPE} MATCHES Debug)
