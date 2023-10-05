@@ -53,7 +53,6 @@ target_include_directories(${EXEC} PUBLIC ${HEADER})
 ## SETUP DEPENDENCIES
 ## <=====================================>
 message(${PREFIX_MESSAGE} "Preparing dependencies for " ${CMAKE_SYSTEM_NAME} "...")
-# include(cmake/windows.cmake)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 find_package(glfw REQUIRED)
 target_link_libraries(${EXEC} glfw)
