@@ -68,6 +68,15 @@ sw::Vector2i sw::Monitor::GetMonitorPos(int index)
     return (sw::Vector2i(width, height));
 }
 
+sw::Vector2i sw::Monitor::GetMonitorSize(int index)
+{
+    const GLFWvidmode *mode = glfwGetVideoMode(GetMonitor(index));
+
+    if (mode)
+        return {mode->width, mode->height};
+    return {-1, -1};
+}
+
 std::string sw::Monitor::GetMonitorName(int index)
 {
     return (std::string(glfwGetMonitorName(GetMonitor(index))));

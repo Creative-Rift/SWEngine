@@ -18,6 +18,8 @@ SW_MODULE_EXPORT std::string    sw::Window::m_title("ShipWreck Engine");
 SW_MODULE_EXPORT unsigned int   sw::Window::m_flags(0);
 SW_MODULE_EXPORT bool           sw::Window::m_cursorHidden(false);
 SW_MODULE_EXPORT bool           sw::Window::m_ready(false);
+SW_MODULE_EXPORT bool           sw::Window::m_focus(false);
+SW_MODULE_EXPORT bool           sw::Window::m_cursorOnScreen(false);
 
 void sw::Window::Start()
 {
@@ -36,6 +38,7 @@ void sw::Window::Start()
         throw sw::Error("Failed to create window: " + std::to_string(code) + " " + desc);
     }
     glfwMakeContextCurrent(m_window);
+    SetUpCallBack();
     m_ready = true;
 }
 
@@ -110,6 +113,11 @@ void sw::Window::Restore()
     }
 }
 
+void sw::Window::RequestAttention()
+{
+    glfwRequestWindowAttention(m_window);
+}
+
 void sw::Window::SetTitle(std::string&& title)
 {
     m_title = title;
@@ -176,7 +184,7 @@ void sw::Window::SetMonitor(int index)
     int count = 0;
     GLFWmonitor **monitors = glfwGetMonitors(&count);
 
-    if (count > index)
+    if (index > count)
         throw std::out_of_range("Monitor not found");
     const GLFWvidmode *mode = glfwGetVideoMode(monitors[index]);
     glfwSetWindowMonitor(m_window, monitors[index], 0, 0, mode->width, mode->height, mode->refreshRate);
@@ -185,6 +193,11 @@ void sw::Window::SetMonitor(int index)
 void sw::Window::SetClipboardText(std::string&& text)
 {
     glfwSetClipboardString(m_window, text.c_str());
+}
+
+void sw::Window::SetOpacity(float opacity)
+{
+    glfwSetWindowOpacity(m_window, opacity);
 }
 
 GLFWwindow *sw::Window::GetWindow()
@@ -225,4 +238,29 @@ sw::Vector2i sw::Window::GetPosition()
 std::string sw::Window::GetClipBoardText()
 {
     return (std::string(glfwGetClipboardString(m_window)));
+}
+
+float sw::Window::GetOpacity()
+{
+    return glfwGetWindowOpacity(m_window);
+}
+
+bool sw::Window::IsHidden()
+{
+    return glfwGetWindowAttrib(m_window, GLFW_VISIBLE);
+}
+
+bool sw::Window::isMaximized()
+{
+    return HasFlag(sw::WindowFlags::MAXIMIZED);
+}
+
+bool sw::Window::isMinimized()
+{
+    return HasFlag(sw::WindowFlags::MINIMIZED);
+}
+
+bool sw::Window::IsFocus()
+{
+    return m_focus;
 }

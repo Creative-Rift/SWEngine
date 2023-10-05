@@ -15,11 +15,8 @@ namespace sw
     {
 
         protected:
-            /// @brief The message of the @b Error. It contains more indication
-            /// about the occuring @b Error.
-            //
+            /// @brief The message of the Error
             const std::string m_message;
-            ///
 
         public:
             Error() = delete;
@@ -27,40 +24,28 @@ namespace sw
             Error& operator=(Error const &) = delete;
             Error& operator=(Error&&) = delete;
 
-            /// @brief Default @c Constructor of an @b Error.
+            /// @brief Default Constructor
             ///
-            /// @param message The message transfered by the @b Error.
-            /// @param code The unique code of the @b Error.
-            //
+            /// @param message The message
             explicit Error(const std::string&& message);
-            ///
 
-            /// @brief Other @c Constructor of an @b Error. The message and
-            /// the code of the given error are use to create the new one.
+            /// @brief Copy constructor
             ///
-            /// @param other The error to copy.
-            //
+            /// @param other The error to copy
             Error(const Error& other);
-            ///
 
-            /// @brief Default @c Destructor of an @b Entity.
-            //
+            /// @brief Default Destructor
             ~Error() override = default;
-            ///
 
-            /// @brief Return the message of the @b Error.
+            /// @brief Return the message
             ///
-            /// @return The @b Error message.
-            //
+            /// @return The Error message
             [[nodiscard]] const std::string& getMessage() const;
-            ///
 
-            /// @brief Return the message of the @b Error.
+            /// @brief Return the message
             ///
-            /// @return The @b Error message.
-            //
+            /// @return The Error message
             [[nodiscard]] const char* what() const noexcept override;
-            ///
 
     }; // class Error
 
