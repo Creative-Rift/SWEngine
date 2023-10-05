@@ -22,6 +22,10 @@ message(${PREFIX_MESSAGE} "Build type set to: " ${CMAKE_BUILD_TYPE})
 message(${PREFIX_MESSAGE} "Current cmake location: " ${CMAKE_CURRENT_SOURCE_DIR})
 message(${PREFIX_MESSAGE} "Project location: " ${CMAKE_SOURCE_DIR})
 
+if(POLICY CMP0135)
+  cmake_policy(SET CMP0135 NEW)
+endif()
+
 ## GET SOURCES
 ## <=====================================>
 file(GLOB_RECURSE SRC "${PROJECT_SOURCE_DIR}/sources/*")
@@ -50,7 +54,11 @@ target_include_directories(${EXEC} PUBLIC ${HEADER})
 ## <=====================================>
 if (WIN32)
     message(${PREFIX_MESSAGE} "Preparing dependencies for windows...")
-    include(cmake/windows.cmake)
+    # include(cmake/windows.cmake)
+    set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+    find_package(glfw REQUIRED)
+    target_link_libraries(${EXEC} glfw)
+
 else()
     message(FATAL_ERROR "System not supported!")
 endif()
