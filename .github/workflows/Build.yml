@@ -1,0 +1,32 @@
+name: Build Engine
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    branches:
+      - master
+      - develop
+  workflow_dispatch:
+
+env:
+  BUILD_TYPE: Release
+  LIBRARIES_VERSION: 1
+
+jobs:
+  Test_windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Config build
+        run: |
+          mkdir build && cd build
+          cmake -B ${{github.workspace}}\build -G"Visual Studio 17 2022" -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} ..
+
+      - name: Build tests
+        run: |
+          cd ${{github.workspace}}\build
+          cmake --build ${{github.workspace}}\build --target SWEngine --config ${{env.BUILD_TYPE}}
