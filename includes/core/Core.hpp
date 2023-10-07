@@ -8,6 +8,7 @@
 
 #include "SWEngine.hpp"
 #include "core/window/Window.hpp"
+#include "scene/sceneManager/SceneManager.hpp"
 
 namespace sw {
 
@@ -24,7 +25,14 @@ namespace sw {
 
         /// @brief Check if the window is open
         static bool IsRunning();
+
+        /// @brief Get SceneManager
+        ///
+        /// \return sw::SceneManager&
+        [[nodiscard]] static sw::SceneManager& GetSceneManager();
+
     private:
+        static SceneManager m_sceneManager;
 
     };
 
