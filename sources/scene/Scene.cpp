@@ -5,7 +5,11 @@
 
 #include <iostream>
 
+#include "boost/uuid/uuid_hash.hpp"
+
 #include "scene/Scene.hpp"
+#include "utils/exception/Error.hpp"
+#include "gameobject/GameObject.hpp"
 
 sw::Scene::Scene(const std::string name) :
 m_name(name),
@@ -65,4 +69,65 @@ void sw::Scene::updateGraphics()
 const std::string &sw::Scene::getName() const
 {
     return m_name;
+}
+
+sw::GameObject &sw::Scene::createGameObject(const std::string &gameObjectName)
+{
+    auto newGameObject = std::make_shared<sw::GameObject>(gameObjectName, *this);
+
+    return dynamic_cast<sw::GameObject&>(*m_gameObjects.try_emplace(newGameObject->id(), newGameObject).first->second);
+}
+
+sw::GameObject &sw::Scene::getGameObjectByName(const std::string &gameObjectName)
+{
+    for (auto& [_, gameObject] : m_gameObjects) {
+        if (gameObject->name() == gameObjectName)
+            return *gameObject;
+    }
+    throw sw::Error("GameObject not found");
+}
+
+sw::GameObject &sw::Scene::getGameObjectById(const boost::uuids::uuid gameObjectId)
+{
+    if (m_gameObjects.contains(gameObjectId))
+        return *m_gameObjects[gameObjectId];
+    throw sw::Error("GameObject not found");
+}
+
+bool sw::Scene::hasGameObject(const std::string &gameObjectName)
+{
+    for (auto& [_, gameObject] : m_gameObjects) {
+        if (gameObject->name() == gameObjectName)
+            return true;
+    }
+    return false;
+}
+
+bool sw::Scene::hasGameObject(const boost::uuids::uuid gameObjectId)
+{
+    return m_gameObjects.contains(gameObjectId);
+}
+
+void sw::Scene::deleteGameObject(const std::string &gameObjectName)
+{
+    m_deleteGameObject.emplace(getGameObjectByName(gameObjectName).id());
+}
+
+void sw::Scene::deleteGameObject(const boost::uuids::uuid gameObjectId)
+{
+    m_deleteGameObject.emplace(gameObjectId);
+}
+
+void sw::Scene::eraseGameObject()
+{
+    for (auto& [id, _] : m_gameObjects)
+        deleteGameObject(id);
+}
+
+void sw::Scene::deleteRequestedGameObject()
+{
+    for (auto& id : m_deleteGameObject) {
+        m_gameObjects.erase(id);
+    }
+    m_deleteGameObject.clear();
 }
