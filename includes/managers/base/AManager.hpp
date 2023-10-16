@@ -12,10 +12,12 @@
 #include <forward_list>
 
 #include "boost/uuid/uuid.hpp"
+#include "boost/uuid/uuid_hash.hpp"
 
 #include "managers/base/IManager.hpp"
 #include "Concept.hpp"
 #include "scene/Scene.hpp"
+#include "boost/uuid/random_generator.hpp"
 
 namespace sw {
 
@@ -59,13 +61,13 @@ namespace sw {
             [[nodiscard]] virtual bool isLoad() const;
 
             /// @brief Load the Manager.
-            virtual void load() = 0;
+            virtual void load();
 
             /// @brief Update all component of the Manager.
-            virtual void update() = 0;
+            virtual void update();
 
             /// @brief Unload the Manager.
-            virtual void unload() = 0;
+            virtual void unload();
 
             /// @brief Create a Component for a GameObject.
             ///
@@ -162,10 +164,10 @@ namespace sw {
 
                 friend AManager;
             }
-            /// @brief The map use to reference the @b Components by their layers.
+            /// @brief The map use to reference the Components by their layers.
             ///
-            /// @arg int         The @b Component layer.
-            /// @arg std::string The @b Component name.
+            /// @arg int                Component layer.
+            /// @arg boost::uuids::uuid Component id.
             m_componentsLayers;
 
             /// @brief This set has all component that will be deleted

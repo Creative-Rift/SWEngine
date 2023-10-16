@@ -10,6 +10,7 @@
 #include "scene/Scene.hpp"
 #include "utils/exception/Error.hpp"
 #include "gameobject/GameObject.hpp"
+#include "managers/TransformManager.hpp"
 
 sw::Scene::Scene(const std::string name) :
 m_name(name),
@@ -24,6 +25,12 @@ void sw::Scene::load()
         return;
 
     std::cout << "Loading Scene(" << m_name << ")..." << std::endl;
+
+    createManager<sw::TransformManager>();
+
+    for (auto& [_, manager] : m_managers)
+        manager->load();
+
     m_isLoad = true;
 }
 
@@ -43,6 +50,11 @@ void sw::Scene::unload()
         return;
     std::cout << "Unloading Scene(" << m_name << ")..." << std::endl;
 
+    for (auto& [_, manager] : m_managers)
+        manager->unload();
+    m_managers.clear();
+    m_gameObjects.clear();
+    m_deleteGameObject.clear();
     m_isLoad = false;
 }
 

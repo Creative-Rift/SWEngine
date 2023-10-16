@@ -10,6 +10,7 @@
 
 #include "boost/uuid/uuid.hpp"
 #include "scene/Scene.hpp"
+#include "managers/base/AManager.hpp"
 
 namespace sw {
 
@@ -52,12 +53,49 @@ namespace sw {
             /// @param value boolean
             void setActive(bool active);
 
+            /// @brief Create new Component.
+            ///
+            /// \tparam Cpt Component type
+            /// @param args The arguments for the Component constructor.
+            /// @return Cpt&
+            template <ClassComponent Cpt, typename... Args>
+            Cpt& createComponent(Args... values);
+
+            /// @brief Get a Component.
+            ///
+            /// \tparam Cpt Component type
+            /// @return Cpt&
+            template <ClassComponent Cpt>
+            Cpt& getComponent();
+
+            /// @brief Check if the GameObject has a Component
+            ///
+            /// \tparam Cpt Component type
+            /// @return boolean
+            template <ClassComponent Cpt>
+            [[nodiscard]] bool hasComponent() const;
+
+            /// @brief Delete a Component.
+            ///
+            /// \tparam Cpt Component type
+            template <ClassComponent Cpt>
+            void deleteComponent();
+
+            /// @brief Define the order
+            ///
+            /// \tparam Cpt Component type
+            /// \param layer int
+            template <ClassComponent Cpt>
+            void setLayer(int layer);
+
         private:
             boost::uuids::uuid m_id;
             std::string m_name;
             bool m_isActive;
             Scene &m_scene;
     };
+
+#include "GameObject.inl"
 
 } // sw
 

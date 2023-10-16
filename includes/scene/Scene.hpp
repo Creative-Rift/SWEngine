@@ -16,6 +16,7 @@
 
 #include "SWEngine.hpp"
 #include "managers/base/IManager.hpp"
+#include "Concept.hpp"
 
 namespace sw {
 
@@ -110,6 +111,29 @@ namespace sw {
             /// @brief Delete all GameObject.
             void eraseGameObject();
 
+            /// @brief Create a new Manager.
+            ///
+            /// @param args The arguments for the @b Manager constructor.
+            /// @return Manager&
+            template <ClassManager Manager, typename... Args>
+            Manager& createManager(Args... args);
+
+            /// @brief Get the @b Manager corresponding to the given name.
+            ///
+            /// @c ClassManager Type of the wanted @b Manager.
+            ///
+            /// @param managerName The @b Manager Name.
+            ///
+            /// @return The wanted @b Manager, with the given type.
+            template <ClassManager Manager>
+            [[nodiscard]] Manager& getManager(const std::string& managerName);
+
+            /// @brief Get the @b Manager corresponding to the given name.
+            ///
+            /// @param managerName The @b Manager Name.
+            ///
+            /// @return The wanted @b Manager, with the interface type.
+            [[nodiscard]] IManager& getManager(const std::string& managerName);
 
         protected:
             /// @brief Name of the scene
@@ -148,10 +172,6 @@ namespace sw {
             /// @brief Delete all GameObject from m_deleteGameObject
             void deleteRequestedGameObject();
 
-            /// @brief This set has all managers that will be deleted
-            /// at the end of the frame's computation
-            std::unordered_set<std::string> m_managersToDelete;
-
             class ManagerMap : private std::unordered_map<std::string, std::shared_ptr<IManager>> {
                 public:
                     using std::unordered_map<std::string, std::shared_ptr<IManager>>::begin;
@@ -166,6 +186,8 @@ namespace sw {
             /// @arg std::shared_ptr<Cpt> The Manager itself.
             m_managers;
     };
+
+#include "Scene.inl"
 
 } // sw
 

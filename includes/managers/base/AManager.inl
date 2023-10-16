@@ -130,7 +130,7 @@ inline void sw::AManager<Cpt>::deleteComponent(const std::string& gameObjectName
         /// TODO: add Log
         return;
     }
-    m_deleteComponent.emplace(gameObjectName);
+    m_deleteComponent.emplace(go.id());
 }
 
 template<ClassComponent Cpt>
@@ -140,7 +140,7 @@ inline void sw::AManager<Cpt>::deleteComponent(const boost::uuids::uuid &gameObj
         /// TODO: add Log
         return;
     }
-    m_deleteComponent.emplace(gameObjectName);
+    m_deleteComponent.emplace(gameObjectId);
 }
 
 template<ClassComponent Cpt>
@@ -153,12 +153,11 @@ inline void sw::AManager<Cpt>::setLayer(const std::string& gameObjectName, int v
         return;
     }
     for (auto& [layer, id] : m_componentsLayers)
-        if (m_components[id]->name() == gameObjectName) {
+        if (m_components[id]->gameObjectName() == gameObjectName) {
             layer = value;
             break;
         }
     m_componentsLayers.sort();
-    m_componentsLayers.needSort = true;
 }
 
 template<ClassComponent Cpt>
@@ -174,7 +173,6 @@ inline void sw::AManager<Cpt>::setLayer(const boost::uuids::uuid &gameObjectId, 
             break;
         }
     m_componentsLayers.sort();
-    m_componentsLayers.needSort = true;
 }
 
 template<ClassComponent Cpt>
@@ -184,7 +182,7 @@ inline int sw::AManager<Cpt>::getLayer(const std::string& gameObjectName) const
 
     if (m_components.contains(go.id()))
         for (auto& [layer, id] : m_componentsLayers)
-            if (m_components[id]->name() == gameObjectName)
+            if (m_components.at(id)->gameObjectName() == gameObjectName)
                 return (layer);
     throw sw::Error("Component [" + gameObjectName + "] not found");
 }
@@ -223,11 +221,11 @@ void sw::AManager<Cpt>::deleteRequestedComponents()
 {
     for (auto id : m_deleteComponent) {
         m_components.erase(id);
-        for (auto& [layer, id] : m_componentsLayers)
-            if (id == cptName) {
+        for (auto& [layer, layerId] : m_componentsLayers)
+            if (layerId == id) {
                 m_componentsLayers.remove(std::pair<int, boost::uuids::uuid>(layer, id));
                 break;
             }
     }
-    m_componentToDelete.clear();
+    m_deleteComponent.clear();
 }
