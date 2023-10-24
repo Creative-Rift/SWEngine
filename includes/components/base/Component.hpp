@@ -9,17 +9,22 @@
 
 #include <string>
 
-
 namespace sw {
 
     class GameObject;
 
     class Component {
         public:
+            Component() = delete;
+            Component(Component const&) = delete;
+            Component(Component &&) = delete;
+            Component &operator=(Component const &) = delete;
+            Component &operator=(Component &&) = delete;
+
             /// @brief Default Constructor.
             ///
             /// @param sw::GameObject& - GameObject attached to the new component
-            explicit Component(GameObject &gameObject, bool isActive = true);
+            explicit Component(GameObject &gameObject);
 
             /// @brief Default Destructor.
             virtual ~Component() = default;
@@ -47,12 +52,6 @@ namespace sw {
         protected:
             bool m_isActive;
             GameObject &m_gameObject;
-
-            Component() = delete;
-            Component(Component const&) = delete;
-            Component(Component &&) = delete;
-            Component &operator=(Component const &) = delete;
-            Component &operator=(Component &&) = delete;
     };
 } // SW
 #endif //SHIPWRECK_ENGINE_COMPONENT_HPP

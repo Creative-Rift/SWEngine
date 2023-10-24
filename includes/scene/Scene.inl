@@ -6,7 +6,7 @@
 template<ClassManager Manager, typename... Args>
 inline Manager& sw::Scene::createManager(Args... args)
 {
-    auto managerName = typeid(int).name();
+    auto managerName = typeid(Manager).name();
     //if (m_managers.contains(managerName))
     //    sw::Speech::Warning(sw::Log::warning324(FUNCTION, name, managerName)); TODO: add log
 
@@ -18,7 +18,7 @@ template<ClassManager Manager>
 inline Manager& sw::Scene::getManager(const std::string& managerName)
 try
 {
-    return (static_cast<Manager&>(*m_managers.at(managerName)));
+    return (static_cast<Manager&>(*m_managers.at(managerName + "Manager")));
 }
 catch (std::out_of_range&) {
     throw sw::Error("Manager not found");

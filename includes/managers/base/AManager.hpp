@@ -12,14 +12,16 @@
 #include <forward_list>
 
 #include "boost/uuid/uuid.hpp"
-#include "boost/uuid/uuid_hash.hpp"
+#include "boost/uuid/random_generator.hpp"
 
 #include "managers/base/IManager.hpp"
 #include "Concept.hpp"
 #include "scene/Scene.hpp"
-#include "boost/uuid/random_generator.hpp"
+#include "components/base/Component.hpp"
 
 namespace sw {
+
+    class GameObject;
 
     template<ClassComponent Cpt>
     class AManager : public IManager {
@@ -75,7 +77,7 @@ namespace sw {
             /// @param args Arguments for the Component constructor.
             /// @return sw::Cpt
             template <typename... Args>
-            Cpt& createComponent(const std::string& gameObjectName, Args... values);
+            Cpt& createComponent(const boost::uuids::uuid& uuid, Args... values);
 
             /// @brief Verify of the Component exist.
             ///

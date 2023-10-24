@@ -11,10 +11,10 @@ inline Cpt& sw::GameObject::createComponent(Args... values)
 
     //if (manager.hasComponent(m_name))
     //    sw::Speech::Warning(sw::Log::warning516(FUNCTION, m_name, managerName)); // TODO: add log
-    return (m_scene.getManager<sw::AManager<Cpt>>(managerName).createComponent(m_name, values...));
+    return (m_scene.getManager<sw::AManager<Cpt>>(managerName).createComponent(m_id, values...));
 }
 
-template<ClassComponent Cpt, typename... Args>
+template<ClassComponent Cpt>
 inline bool sw::GameObject::hasComponent() const
 {
     auto managerName = typeid(Cpt).name();

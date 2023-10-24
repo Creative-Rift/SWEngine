@@ -6,8 +6,8 @@
 #include "components/base/Component.hpp"
 #include "gameobject/GameObject.hpp"
 
-sw::Component::Component(sw::GameObject &gameObject, bool isActive) :
-m_isActive(isActive),
+sw::Component::Component(sw::GameObject &gameObject) :
+m_isActive(true),
 m_gameObject(gameObject)
 {}
 

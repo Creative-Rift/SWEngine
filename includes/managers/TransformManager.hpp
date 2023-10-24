@@ -6,16 +6,16 @@
 #ifndef SHIPWRECK_ENGINE_TRANSFORMMANAGER_HPP
 #define SHIPWRECK_ENGINE_TRANSFORMMANAGER_HPP
 
+#include "SWEngine.hpp"
 #include "base/AManager.hpp"
 #include "components/Transform.hpp"
-#include "SWEngine.hpp"
 
 namespace sw {
     class SW_MODULE_EXPORT TransformManager : public sw::AManager<Transform> {
         public:
             using sw::AManager<Transform>::AManager;
 
-            ~TransformManager() = default;
+            ~TransformManager() override = default;
 
             void onUpdate() override {};
     }; // class TransformManager

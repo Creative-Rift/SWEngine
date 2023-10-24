@@ -9,12 +9,15 @@
 #include <string>
 
 #include "boost/uuid/uuid.hpp"
+
+#include "gameobject/IGameObject.hpp"
+#include "SWEngine.hpp"
 #include "scene/Scene.hpp"
 #include "managers/base/AManager.hpp"
 
 namespace sw {
 
-    class GameObject {
+    class SW_MODULE_EXPORT GameObject : public IGameObject{
         public:
             GameObject() = delete;
 
@@ -25,33 +28,30 @@ namespace sw {
             /// @param isActive Define if the GameObject is active
             GameObject(const std::string name, Scene &scene, bool isActive = true);
 
-            /// @brief Default Destructor of an GameObject.
-            ~GameObject() = default;
-
             /// @brief Return the name of the GameObject.
             ///
             /// @return std::string
-            [[nodiscard]] std::string name() const;
+            [[nodiscard]] std::string name() const override;
 
-            /// @brief Return a reference of the Scene attached to the Entity.
+            /// @brief Return a reference of the Scene attached to the GameObject.
             ///
             /// @return sw::Scene&
-            [[nodiscard]] Scene &scene();
+            [[nodiscard]] Scene &scene() override;
 
             /// @brief Return the id.
             ///
             /// @return boost::uuids::uuid
-            [[nodiscard]] boost::uuids::uuid id() const;
+            [[nodiscard]] boost::uuids::uuid id() const override;
 
             /// @brief Check if the GameObject is active or not.
             ///
             /// @return boolean
-            [[nodiscard]] bool isActive() const;
+            [[nodiscard]] bool isActive() const override;
 
             /// @brief Define if the GameObject is active.
             ///
             /// @param value boolean
-            void setActive(bool active);
+            void setActive(bool active) override;
 
             /// @brief Create new Component.
             ///

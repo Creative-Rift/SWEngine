@@ -15,6 +15,8 @@
 
 namespace sw {
 
+    class GameObject;
+
     class SW_MODULE_EXPORT Transform : public Component {
         public:
 
