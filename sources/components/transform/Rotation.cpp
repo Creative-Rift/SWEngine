@@ -16,8 +16,8 @@ void sw::Transform::setRotation(float angle, float rotationX, float rotationY, f
         m_globalRotationAxis.y = rotationY;
         m_globalRotationAxis.z = rotationZ;
 
-        //for (auto &[_, entity]: m_gameObject.m_childrenMap)
-        //    entity.get().transform().setRotation(rotationX, rotationY, rotationZ); TODO: add child system to GameObject
+        //for (auto &[_, gameObject]: m_gameObject.m_childrenMap)
+        //    gameObject.get().transform().setRotation(rotationX, rotationY, rotationZ); TODO: add child system to GameObject
     }
 }
 
@@ -32,8 +32,8 @@ void sw::Transform::rotate(float angle, float rotationX, float rotationY, float 
         m_globalRotationAxis.y += rotationY;
         m_globalRotationAxis.z += rotationZ;
 
-        //for (auto& [_, entity] : m_gameObject.m_childrenMap)
-        //    entity.get().getComponent<sw::Transform>("TransformManager").rotate(rotationX, rotationY, rotationZ); TODO: add child system to GameObject
+        //for (auto& [_, gameObject] : m_gameObject.m_childrenMap)
+        //    gameObject.get().getComponent<sw::Transform>("TransformManager").rotate(rotationX, rotationY, rotationZ); TODO: add child system to GameObject
     }
 }
 

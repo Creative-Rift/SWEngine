@@ -18,7 +18,7 @@ template<ClassManager Manager>
 inline Manager& sw::Scene::getManager(const std::string& managerName)
 try
 {
-    return (static_cast<Manager&>(*m_managers.at(managerName + "Manager")));
+    return (static_cast<Manager&>(*m_managers.at(managerName)));
 }
 catch (std::out_of_range&) {
     throw sw::Error("Manager not found");

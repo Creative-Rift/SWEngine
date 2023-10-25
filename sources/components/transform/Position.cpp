@@ -25,8 +25,8 @@ void sw::Transform::move(const sw::Vector3f &position)
     if (position.x != 0 || position.y != 0 || position.z != 0) {
         m_position += position;
         m_globalPosition += position;
-        //for (auto &[_, entity]: m_gameObject.m_childrenMap) TODO add child system to GameObject
-        //    entity.get().transform().move(position);
+        //for (auto &[_, gameObject]: m_gameObject.m_childrenMap) TODO add child system to GameObject
+        //    gameObject.get().transform().move(position);
     }
 }
 

@@ -129,6 +129,7 @@ namespace sw {
             [[nodiscard]] Manager& getManager(const std::string& managerName);
 
             /// @brief Get the @b Manager corresponding to the given name.
+            /// A manager's name look like this: class sw::[COMPONENT]Manager (class sw::TransformManager)
             ///
             /// @param managerName The @b Manager Name.
             ///

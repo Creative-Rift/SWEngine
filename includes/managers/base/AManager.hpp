@@ -83,7 +83,7 @@ namespace sw {
             ///
             /// @param gameObjectName GameObject's name.
             /// @return boolean
-            [[nodiscard]] virtual bool hasComponent(const std::string &gameObjectName) const;
+            // [[nodiscard]] virtual bool hasComponent(const std::string &gameObjectName) const;
 
             /// @brief Verify of the Component exist.
             ///
@@ -94,7 +94,7 @@ namespace sw {
             /// @brief Delete the Component attached to an GameObject.
             ///
             /// @param gameObjectName GameObject's name.
-            virtual void deleteComponent(const std::string &gameObjectName);
+            // virtual void deleteComponent(const std::string &gameObjectName);
 
             /// @brief Delete the Component attached to an GameObject.
             ///
@@ -107,21 +107,21 @@ namespace sw {
             /// @brief Set the layer of the Component.
             ///
             /// @param gameObjectName GameObject's name.
-            virtual void setLayer(const std::string &gameObjectName, int layer);
+            // virtual void setLayer(const std::string &gameObjectName, int layer);
 
             /// @brief Set the layer of the Component.
             ///
             /// @param gameObjectId GameObject's name.
             virtual void setLayer(const boost::uuids::uuid &gameObjectId, int layer);
 
-            /// @brief Get the @b Component layer associate with the @b Entity
+            /// @brief Get the @b Component layer associate with the @b GameObject
             /// corresponding to the given name.
             ///
-            /// @param gameObjectName The @b Entity name.
+            /// @param gameObjectName The @b GameObject name.
             /// @return The layer of the wanted @b Component.
-            [[nodiscard]] virtual int getLayer(const std::string &gameObjectName) const;
+            // [[nodiscard]] virtual int getLayer(const std::string &gameObjectName) const;
 
-            /// @brief Get the @b Component layer associate with the @b Entity
+            /// @brief Get the @b Component layer associate with the @b GameObject
             /// corresponding to the given name.
             ///
             /// @param gameObjectId GameObject's id.
@@ -132,9 +132,7 @@ namespace sw {
             ///
             /// @param gameObjectName
             /// @return sw::Cpt&
-            Cpt& getComponent(const std::string& gameObjectName);
-
-
+            // Cpt& getComponent(const std::string& gameObjectName);
 
         private:
             std::string m_name;

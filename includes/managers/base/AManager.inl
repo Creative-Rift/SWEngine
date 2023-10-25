@@ -104,12 +104,12 @@ inline Cpt &sw::AManager<Cpt>::createComponent(const boost::uuids::uuid& uuid, A
     return (*(it.first->second));
 }
 
-template<ClassComponent Cpt>
-inline bool sw::AManager<Cpt>::hasComponent(const std::string &gameObjectName) const
-{
-    auto &go = m_scene.getGameObjectByName(gameObjectName);
-    return (m_components.contains(go.id()));
-}
+// template<ClassComponent Cpt>
+// inline bool sw::AManager<Cpt>::hasComponent(const std::string &gameObjectName) const
+// {
+//     auto &go = m_scene.getGameObjectByName(gameObjectName);
+//     return (m_components.contains(go.id()));
+// }
 
 template<ClassComponent Cpt>
 inline bool sw::AManager<Cpt>::hasComponent(const boost::uuids::uuid &gameObjectId) const
@@ -117,17 +117,17 @@ inline bool sw::AManager<Cpt>::hasComponent(const boost::uuids::uuid &gameObject
     return (m_components.contains(gameObjectId));
 }
 
-template<ClassComponent Cpt>
-inline void sw::AManager<Cpt>::deleteComponent(const std::string &gameObjectName)
-{
-    auto &go = m_scene.getGameObjectByName(gameObjectName);
-
-    if (!m_components.contains(go.id())) {
-        /// TODO: add Log
-        return;
-    }
-    m_deleteComponent.emplace(go.id());
-}
+// template<ClassComponent Cpt>
+// inline void sw::AManager<Cpt>::deleteComponent(const std::string &gameObjectName)
+// {
+//     auto &go = m_scene.getGameObjectByName(gameObjectName);
+//
+//     if (!m_components.contains(go.id())) {
+//         /// TODO: add Log
+//         return;
+//     }
+//     m_deleteComponent.emplace(go.id());
+// }
 
 template<ClassComponent Cpt>
 inline void sw::AManager<Cpt>::deleteComponent(const boost::uuids::uuid &gameObjectId)
@@ -139,22 +139,22 @@ inline void sw::AManager<Cpt>::deleteComponent(const boost::uuids::uuid &gameObj
     m_deleteComponent.emplace(gameObjectId);
 }
 
-template<ClassComponent Cpt>
-inline void sw::AManager<Cpt>::setLayer(const std::string &gameObjectName, int value)
-{
-    auto &go = m_scene.getGameObjectByName(gameObjectName);
-
-    if (!m_components.contains(go.id())) {
-        /// TODO: add Log
-        return;
-    }
-    for (auto &[layer, id]: m_componentsLayers)
-        if (m_components[id]->gameObjectName() == gameObjectName) {
-            layer = value;
-            break;
-        }
-    m_componentsLayers.sort();
-}
+// template<ClassComponent Cpt>
+// inline void sw::AManager<Cpt>::setLayer(const std::string &gameObjectName, int value)
+// {
+//     auto &go = m_scene.getGameObjectByName(gameObjectName);
+//
+//     if (!m_components.contains(go.id())) {
+//         /// TODO: add Log
+//         return;
+//     }
+//     for (auto &[layer, id]: m_componentsLayers)
+//         if (m_components[id]->gameObjectName() == gameObjectName) {
+//             layer = value;
+//             break;
+//         }
+//     m_componentsLayers.sort();
+// }
 
 template<ClassComponent Cpt>
 inline void sw::AManager<Cpt>::setLayer(const boost::uuids::uuid &gameObjectId, int value)
@@ -171,17 +171,17 @@ inline void sw::AManager<Cpt>::setLayer(const boost::uuids::uuid &gameObjectId, 
     m_componentsLayers.sort();
 }
 
-template<ClassComponent Cpt>
-inline int sw::AManager<Cpt>::getLayer(const std::string &gameObjectName) const
-{
-    auto &go = m_scene.getGameObjectByName(gameObjectName);
-
-    if (m_components.contains(go.id()))
-        for (auto &[layer, id]: m_componentsLayers)
-            if (m_components.at(id)->gameObjectName() == gameObjectName)
-                return (layer);
-    throw sw::Error("Component [" + gameObjectName + "] not found");
-}
+// template<ClassComponent Cpt>
+// inline int sw::AManager<Cpt>::getLayer(const std::string &gameObjectName) const
+// {
+//     auto &go = m_scene.getGameObjectByName(gameObjectName);
+//
+//     if (m_components.contains(go.id()))
+//         for (auto &[layer, id]: m_componentsLayers)
+//             if (m_components.at(id)->gameObjectName() == gameObjectName)
+//                 return (layer);
+//     throw sw::Error("Component [" + gameObjectName + "] not found");
+// }
 
 template<ClassComponent Cpt>
 inline int sw::AManager<Cpt>::getLayer(const boost::uuids::uuid &gameObjectId) const
@@ -193,17 +193,17 @@ inline int sw::AManager<Cpt>::getLayer(const boost::uuids::uuid &gameObjectId) c
     throw sw::Error("Component not found"); /// TODO add id in message
 }
 
-template<ClassComponent Cpt>
-inline Cpt &sw::AManager<Cpt>::getComponent(const std::string &gameObjectName)
-try
-{
-    auto &go = m_scene.getGameObjectByName(gameObjectName);
-
-    return (*m_components.at(go.id()));
-}
-catch (std::out_of_range &) {
-    throw sw::Error("Component not found"); // TODO add GameObject name
-}
+// template<ClassComponent Cpt>
+// inline Cpt &sw::AManager<Cpt>::getComponent(const std::string &gameObjectName)
+// try
+// {
+//     auto &go = m_scene.getGameObjectByName(gameObjectName);
+//
+//     return (*m_components.at(go.id()));
+// }
+// catch (std::out_of_range &) {
+//     throw sw::Error("Component not found"); // TODO add GameObject name
+// }
 
 template<ClassComponent Cpt>
 void sw::AManager<Cpt>::eraseComponents()

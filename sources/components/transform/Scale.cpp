@@ -25,8 +25,8 @@ void sw::Transform::scale(const sw::Vector3f &scale)
     if (scale.x != 0 || scale.y != 0 || scale.z != 0) {
         m_scale *= scale;
         m_globalScale *= scale;
-        //for (auto& [_, entity] : m_gameObject.m_childrenMap) TODO: add child system to GameObject
-        //    entity.get().transform().scale(scale);
+        //for (auto& [_, gameObject] : m_gameObject.m_childrenMap) TODO: add child system to GameObject
+        //    gameObject.get().transform().scale(scale);
     }
 }
 

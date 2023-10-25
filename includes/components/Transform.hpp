@@ -173,7 +173,6 @@ namespace sw {
             /// @param point - point's position
             sw::Vector3f getGlobalTransformPoint(const sw::Vector3f& point);
 
-            ///
             /// Return the position of the given point, transform by
             /// the Matrix Component (global).
             ///
@@ -185,10 +184,10 @@ namespace sw {
         private:
             glm::mat4 m_matrix;                 // Matrix(4x4) for local transform
             glm::mat4 m_globalMatrix;           // Matrix(4x4) for global transform (include all parent)
-            sw::Vector3f m_position;            // Local Position of the Entity
-            sw::Vector3f m_globalPosition;      // Global position of the Entity (include all parent)
-            sw::Vector3f m_scale;               // Local Scale of the Entity
-            sw::Vector3f m_globalScale;         // Global Scale of the Entity (include all parent)
+            sw::Vector3f m_position;            // Local Position of the GameObject
+            sw::Vector3f m_globalPosition;      // Global position of the GameObject (include all parent)
+            sw::Vector3f m_scale;               // Local Scale of the GameObject
+            sw::Vector3f m_globalScale;         // Global Scale of the GameObject (include all parent)
             float m_angle;                      // Rotation angle
             sw::Vector3f m_rotationAxis;        // Local Vector which define the axis rotation
             sw::Vector3f m_globalRotationAxis;  // Global Vector which define the axis rotation (include all parent)
