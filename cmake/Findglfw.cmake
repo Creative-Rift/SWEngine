@@ -2,6 +2,10 @@
 # find_package(glfw required)
 # target_link_libraries([target] glfw)
 
+if(POLICY CMP0135)
+  cmake_policy(SET CMP0135 NEW)
+endif()
+
 if (NOT GLFW_FOUND)
     INCLUDE(FetchContent)
 
