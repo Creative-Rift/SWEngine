@@ -8,7 +8,6 @@
 
 #include <string>
 #include <set>
-#include <unordered_set>
 #include <unordered_map>
 #include <memory>
 
@@ -154,7 +153,7 @@ namespace sw {
 
             /// @brief This set has all GameObject that will be deleted
             /// at the end of the frame's computation
-            std::unordered_set<boost::uuids::uuid> m_deleteGameObject;
+            std::set<boost::uuids::uuid> m_deleteGameObject;
 
             class GameObjectMap : private std::unordered_map<boost::uuids::uuid, std::shared_ptr<GameObject>> {
                 public:
