@@ -114,8 +114,8 @@ namespace sw {
             ///
             /// @param args The arguments for the @b Manager constructor.
             /// @return Manager&
-            template <ClassManager Manager, typename... Args>
-            Manager& createManager(Args... args);
+            template<ClassManager Manager, typename... Args>
+            Manager &createManager(Args... args);
 
             /// @brief Get the @b Manager corresponding to the given name.
             ///
@@ -124,8 +124,8 @@ namespace sw {
             /// @param managerName The @b Manager Name.
             ///
             /// @return The wanted @b Manager, with the given type.
-            template <ClassManager Manager>
-            [[nodiscard]] Manager& getManager(const std::string& managerName);
+            template<ClassManager Manager>
+            [[nodiscard]] Manager &getManager(const std::string &managerName);
 
             /// @brief Get the @b Manager corresponding to the given name.
             /// A manager's name look like this: class sw::[COMPONENT]Manager (class sw::TransformManager)
@@ -133,7 +133,7 @@ namespace sw {
             /// @param managerName The @b Manager Name.
             ///
             /// @return The wanted @b Manager, with the interface type.
-            [[nodiscard]] IManager& getManager(const std::string& managerName);
+            [[nodiscard]] IManager &getManager(const std::string &managerName);
 
         protected:
             /// @brief Name of the scene

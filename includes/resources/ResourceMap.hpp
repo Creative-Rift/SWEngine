@@ -19,9 +19,24 @@ namespace sw {
     template<typename T>
     class SW_MODULE_EXPORT ResourceMap : public std::map<std::string, std::shared_ptr<T>> {
         public:
+            /// @brief Get an element for the map
+            ///
+            /// \param name name of the resource
+            /// \return Shared pointer of the resource
             std::shared_ptr<T> operator[](std::string name);
+
+            /// @brief Get an element for the map
+            ///
+            /// \param name name of the resource
+            /// \return Shared pointer of the resource
             std::shared_ptr<T> operator[](std::string name) const;
-            template <typename... Args>
+
+            /// @brief
+            ///
+            /// \tparam args needed arguments according to the T resource
+            /// \param name name of the resource
+            /// \param args needed arguments according to the T resource
+            template<typename... Args>
             void createResource(std::string name, Args... args);
     };
 } // SW

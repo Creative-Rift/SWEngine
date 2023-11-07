@@ -9,15 +9,17 @@
 #include <mutex>
 
 namespace sw {
-    template <typename T>
+    template<typename T>
     class Singleton {
         private:
             static T *m_instance;
             static std::mutex m_mutex;
 
         protected:
+            /// @brief Default constructor
             Singleton() = default;
 
+            /// @brief Default destructor
             ~Singleton() = default;
 
         public:
@@ -27,16 +29,15 @@ namespace sw {
             ///Singletons should not be assignable.
             void operator=(const Singleton &) = delete;
 
-            /**
-             * This is the static method that controls the access to the singleton
-             * instance. On the first run, it creates a singleton object and places it
-             * into the static field. On subsequent runs, it returns the client existing
-             * object stored in the static field.
-             */
+            /// @brief Return the instance of the singleton.
+            /// Create the singleton on the first call of this function.
+            ///
+            /// \return Type of the Singleton
             static T *GetInstance();
     };
 
 #include "Singleton.inl"
+
 } // SW
 
 #endif //SHIPWRECK_ENGINE_SINGLETON_HPP

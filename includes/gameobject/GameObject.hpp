@@ -90,6 +90,9 @@ namespace sw {
             template <ClassComponent Cpt>
             void setLayer(int layer);
 
+            /// @brief Get transform attached to the GameObject
+            ///
+            /// \return sw::Transform
             Transform &transform();
 
         private:
