@@ -7,9 +7,10 @@
 #define SHIPWRECK_ENGINE_AMANAGER_HPP
 
 #include <string>
-#include <unordered_set>
 #include <memory>
 #include <forward_list>
+#include <map>
+#include <set>
 
 #include "boost/uuid/uuid.hpp"
 #include "boost/uuid/random_generator.hpp"
@@ -134,18 +135,14 @@ namespace sw {
             /// @return sw::Cpt&
             // Cpt& getComponent(const std::string& gameObjectName);
 
-        private:
+        protected:
             std::string m_name;
             Scene &m_scene;
             bool m_isLoad;
             bool m_isActive;
 
-            class ComponentMap : public std::unordered_map<boost::uuids::uuid, std::shared_ptr<Cpt>> {
+            class ComponentMap : public std::map<boost::uuids::uuid, std::shared_ptr<Cpt>> {
                 public:
-                    using std::unordered_map<boost::uuids::uuid, std::shared_ptr<Cpt>>::begin;
-                    using std::unordered_map<boost::uuids::uuid, std::shared_ptr<Cpt>>::end;
-                    using std::unordered_map<boost::uuids::uuid, std::shared_ptr<Cpt>>::operator[];
-
                     friend AManager;
             }
             /// @brief Store all Components.
@@ -172,7 +169,7 @@ namespace sw {
 
             /// @brief This set has all component that will be deleted
             /// at the end of the frame's computation
-            std::unordered_set<boost::uuids::uuid> m_deleteComponent;
+            std::set<boost::uuids::uuid> m_deleteComponent;
 
             /// @brief Function called to customize the behavior of your components.
             virtual void onUpdate() = 0;

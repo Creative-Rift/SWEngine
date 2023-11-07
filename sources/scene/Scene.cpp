@@ -41,6 +41,7 @@ void sw::Scene::update()
 
     updatePhysic();
     updateLogic();
+
     updateGraphics();
 }
 
@@ -75,7 +76,6 @@ void sw::Scene::updateLogic()
 
 void sw::Scene::updateGraphics()
 {
-
 }
 
 const std::string &sw::Scene::getName() const
