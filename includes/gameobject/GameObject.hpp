@@ -17,6 +17,8 @@
 
 namespace sw {
 
+    class Transform;
+
     class SW_MODULE_EXPORT GameObject : public IGameObject{
         public:
             GameObject() = delete;
@@ -88,11 +90,14 @@ namespace sw {
             template <ClassComponent Cpt>
             void setLayer(int layer);
 
+            Transform &transform();
+
         private:
             boost::uuids::uuid m_id;
             std::string m_name;
             bool m_isActive;
             Scene &m_scene;
+            std::shared_ptr<Transform> m_transform;
     };
 
 #include "GameObject.inl"

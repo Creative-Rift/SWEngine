@@ -7,8 +7,8 @@ template<typename T>
 inline std::shared_ptr <T> sw::ResourceMap<T>::operator[](std::string name)
 {
     if (!this->contains(name)) {
-        std::cerr << name << " texture not found" << std::endl;
-        throw sw::Error(name + " model not found");
+        std::cerr << name << " resource not found" << std::endl;
+        throw sw::Error(name + " resource not found");
     }
     return (this->find(name)->second);
 }

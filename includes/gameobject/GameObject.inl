@@ -6,8 +6,8 @@
 template<ClassComponent Cpt, typename... Args>
 inline Cpt& sw::GameObject::createComponent(Args... values)
 {
-    auto managerName = typeid(Cpt).name();
-    sw::AManager<Cpt>& manager = m_scene.getManager<sw::AManager<Cpt>>(managerName);
+    auto managerName = std::string(typeid(Cpt).name());
+    sw::AManager<Cpt>& manager = m_scene.getManager<sw::AManager<Cpt>>(managerName.append("Manager"));
 
     //if (manager.hasComponent(m_name))
     //    sw::Speech::Warning(sw::Log::warning516(FUNCTION, m_name, managerName)); // TODO: add log

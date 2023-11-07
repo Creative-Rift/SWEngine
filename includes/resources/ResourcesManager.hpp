@@ -16,7 +16,7 @@
 #include "ResourceMap.hpp"
 
 namespace sw {
-    class SW_MODULE_EXPORT ResourcesManager : public Singleton {
+    class SW_MODULE_EXPORT ResourcesManager {
         public:
             ResourcesManager();
 

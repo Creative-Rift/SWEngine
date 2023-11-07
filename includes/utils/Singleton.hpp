@@ -9,10 +9,11 @@
 #include <mutex>
 
 namespace sw {
+    template <typename T>
     class Singleton {
         private:
-            static Singleton *m_instance;
-            static std::mutex mutex_;
+            static T *m_instance;
+            static std::mutex m_mutex;
 
         protected:
             Singleton() = default;
@@ -32,8 +33,10 @@ namespace sw {
              * into the static field. On subsequent runs, it returns the client existing
              * object stored in the static field.
              */
-            static Singleton *GetInstance();
+            static T *GetInstance();
     };
+
+#include "Singleton.inl"
 } // SW
 
 #endif //SHIPWRECK_ENGINE_SINGLETON_HPP

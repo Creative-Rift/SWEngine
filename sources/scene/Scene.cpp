@@ -11,6 +11,7 @@
 #include "utils/exception/Error.hpp"
 #include "gameobject/GameObject.hpp"
 #include "managers/TransformManager.hpp"
+#include "managers/SpriteManager.hpp"
 
 sw::Scene::Scene(const std::string name) :
 m_name(name),
@@ -27,6 +28,7 @@ void sw::Scene::load()
     std::cout << "Loading Scene(" << m_name << ")..." << std::endl;
 
     createManager<sw::TransformManager>();
+    createManager<sw::SpriteManager>();
 
     for (auto& [_, manager] : m_managers)
         manager->load();
@@ -41,6 +43,8 @@ void sw::Scene::update()
 
     updatePhysic();
     updateLogic();
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
     updateGraphics();
 }
 
@@ -75,7 +79,7 @@ void sw::Scene::updateLogic()
 
 void sw::Scene::updateGraphics()
 {
-
+    getManager<sw::SpriteManager>(typeid(sw::SpriteManager).name()).onUpdate();
 }
 
 const std::string &sw::Scene::getName() const

@@ -9,6 +9,7 @@
 #include "SWEngine.hpp"
 #include "core/window/Window.hpp"
 #include "scene/sceneManager/SceneManager.hpp"
+#include "resources/ResourcesManager.hpp"
 
 namespace sw {
 
@@ -31,8 +32,11 @@ namespace sw {
         /// \return sw::SceneManager&
         [[nodiscard]] static sw::SceneManager& GetSceneManager();
 
+        [[nodiscard]] static sw::ResourcesManager& GetResourceManager();
+
     private:
         static SceneManager m_sceneManager;
+        static ResourcesManager m_resourceManager;
 
     };
 

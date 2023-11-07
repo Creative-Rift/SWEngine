@@ -8,8 +8,8 @@
 
 #include "resources/ResourcesManager.hpp"
 
-sw::ResourcesManager::ResourcesManager() : Singleton(),
-m_textures()
+sw::ResourcesManager::ResourcesManager() :
+        m_textures()
 {}
 
 void sw::ResourcesManager::CreateTexture(std::string name, std::string path)

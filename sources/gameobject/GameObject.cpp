@@ -6,12 +6,14 @@
 #include "boost/uuid/random_generator.hpp"
 
 #include "gameobject/GameObject.hpp"
+#include "components/Transform.hpp"
 
 sw::GameObject::GameObject(const std::string name, sw::Scene &scene, bool isActive) :
-m_id(boost::uuids::random_generator()()),
-m_name(name),
-m_isActive(isActive),
-m_scene(scene)
+        m_id(boost::uuids::random_generator()()),
+        m_name(name),
+        m_isActive(isActive),
+        m_scene(scene),
+        m_transform(std::make_shared<Transform>(*this))
 {}
 
 std::string sw::GameObject::name() const
@@ -37,4 +39,9 @@ void sw::GameObject::setActive(bool active)
 boost::uuids::uuid sw::GameObject::id() const
 {
     return m_id;
+}
+
+sw::Transform &sw::GameObject::transform()
+{
+    return (*m_transform);
 }
