@@ -10,11 +10,14 @@
 #include "core/window/Window.hpp"
 #include "scene/sceneManager/SceneManager.hpp"
 #include "resources/ResourcesManager.hpp"
+#include "utils/Chronos.hpp"
 
 namespace sw {
 
     class SW_MODULE_EXPORT Core {
         public:
+            static Chronos m_chronos;
+
             /// @brief Start the Engine, call it before any other action
             static void Start();
 
@@ -37,10 +40,13 @@ namespace sw {
             /// \return sw::SceneManager&
             [[nodiscard]] static sw::ResourcesManager &GetResourceManager();
 
+            static void setFrameRateLimit(unsigned int frameRate);
+
         private:
             static SceneManager m_sceneManager;
             static ResourcesManager m_resourceManager;
-
+            static Chronos m_chronosWindow;
+            static double m_frameRate;
     };
 
 } // sw

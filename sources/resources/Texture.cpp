@@ -18,7 +18,7 @@ sw::Texture::Texture(std::string path) :
         m_data(nullptr),
         m_id(0)
 {
-    stbi_set_flip_vertically_on_load(true);
+    // stbi_set_flip_vertically_on_load(true);
     m_data = stbi_load(path.c_str(), &m_width, &m_height, &m_channels, 0);
     if (!m_data) {
         std::cerr << "Failed to load texture: " << path << std::endl;

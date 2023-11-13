@@ -13,7 +13,7 @@ sw::SpriteAnimator::SpriteAnimator(sw::GameObject& gameObject) :
 sw::Component(gameObject),
 m_rect(),
 m_displayRect(),
-m_lastFrame(-1),
+m_lastFrame(0.0),
 m_endFrame(-1),
 m_loopDelay(0.0f),
 m_isPlaying(false),

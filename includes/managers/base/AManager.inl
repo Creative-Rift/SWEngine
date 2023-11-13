@@ -225,3 +225,9 @@ void sw::AManager<Cpt>::deleteRequestedComponents()
     }
     m_deleteComponent.clear();
 }
+
+template<ClassComponent Cpt>
+Cpt& sw::AManager<Cpt>::getComponent(const boost::uuids::uuid &gameObjectId)
+{
+    return (*m_components.at(gameObjectId));
+}

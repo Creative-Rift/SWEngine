@@ -13,6 +13,9 @@
 
 SW_MODULE_EXPORT sw::SceneManager sw::Core::m_sceneManager{};
 SW_MODULE_EXPORT sw::ResourcesManager sw::Core::m_resourceManager{};
+SW_MODULE_EXPORT sw::Chronos sw::Core::m_chronos(sw::Chronos::Wait);
+SW_MODULE_EXPORT sw::Chronos sw::Core::m_chronosWindow(sw::Chronos::Wait);
+SW_MODULE_EXPORT double sw::Core::m_frameRate{1.0/60.0};
 
 void sw::Core::Start()
 {
@@ -27,6 +30,7 @@ void sw::Core::Start()
 
     glViewport(0, 0, 1920, 1080);
     glEnable(GL_DEPTH_TEST);
+    m_chronos.start();
 }
 
 void sw::Core::Stop()
@@ -49,6 +53,15 @@ void sw::Core::Update()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     m_sceneManager.getActiveScene()->update();
     sw::Window::Update();
+
+    if (m_frameRate != 0.0) {
+        auto sleep = std::chrono::milliseconds(static_cast<int>((m_frameRate - m_chronosWindow.getTotalTime()) * 1000));
+        if (sleep.count() > 0)
+            std::this_thread::sleep_for(sleep);
+        m_chronosWindow.stop();
+        m_chronosWindow.start();
+    }
+    m_chronos.tour();
 }
 
 sw::SceneManager &sw::Core::GetSceneManager() {
@@ -58,5 +71,10 @@ sw::SceneManager &sw::Core::GetSceneManager() {
 sw::ResourcesManager &sw::Core::GetResourceManager()
 {
     return m_resourceManager;
+}
+
+void sw::Core::setFrameRateLimit(unsigned int frameRate)
+{
+    m_frameRate = 1.0 / static_cast<double>(frameRate);
 }
 

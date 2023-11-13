@@ -5,12 +5,11 @@
 
 #include "managers/SpriteAnimatorManager.hpp"
 #include "gameobject/GameObject.hpp"
+#include "core/Core.hpp"
 
 void sw::SpriteAnimatorManager::onUpdate()
 {
-    // double currentTime = sw::OpenGLModule::m_chrono.getTotalTime();
-    double currentTime = 0;
-
+    double currentTime = sw::Core::m_chronos.getTotalTime();
     for (auto&[_, obj]: m_components) {
         if (!obj->isActive() || !obj->gameObject().isActive())
             continue;
