@@ -16,7 +16,7 @@ namespace sw {
 
     class SW_MODULE_EXPORT Core {
         public:
-            static Chronos m_chronos;
+            static Chrono m_chronos;
 
             /// @brief Start the Engine, call it before any other action
             static void Start();
@@ -45,7 +45,7 @@ namespace sw {
         private:
             static SceneManager m_sceneManager;
             static ResourcesManager m_resourceManager;
-            static Chronos m_chronosWindow;
+            static Chrono m_chronosWindow;
             static double m_frameRate;
     };
 
