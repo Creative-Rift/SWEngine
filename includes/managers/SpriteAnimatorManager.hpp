@@ -26,12 +26,17 @@ namespace sw {
         private:
 
             /// \brief Update Animation following rules defined for the Type
-            ///         sw::Animator::ANIM_LINE
+            ///        sw::SpriteAnimator::ANIM_LINE
             ///
             /// \param animator Reference to the animator
             /// \param current_time get total time
             static void animLine(SpriteAnimator &animator, double &current_time);
 
+            /// \brief Update Animation following rules defined for the Type
+            ///        sw::SpriteAnimator::ANIM_SPRITE
+            ///
+            /// \param animator Reference to the animator
+            /// \param current_time get total time
             static void animSprite(SpriteAnimator &animator, double &current_time);
 
 

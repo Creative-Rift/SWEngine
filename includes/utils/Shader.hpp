@@ -15,22 +15,6 @@
 
 namespace sw {
     class SW_MODULE_EXPORT Shader {
-        private:
-            unsigned int m_id;
-            ShaderFile m_fragment;
-            ShaderFile m_vertex;
-            std::string m_fragmentPath;
-            std::string m_vertexPath;
-            int m_success;
-            char m_info[512];
-            bool m_loaded;
-
-            /// @brief Get location of a variable from a shader
-            ///
-            /// \param name name of the uniform variable
-            /// \return location as int
-            int getUniLocation(std::string &name) const;
-
         public:
             Shader(Shader const &) = delete;
             Shader(Shader &&) = delete;
@@ -110,6 +94,22 @@ namespace sw {
 
             /// @brief update Opengl shader information
             void update();
+
+        private:
+            unsigned int m_id;
+            ShaderFile m_fragment;
+            ShaderFile m_vertex;
+            std::string m_fragmentPath;
+            std::string m_vertexPath;
+            int m_success;
+            char m_info[512];
+            bool m_loaded;
+
+            /// @brief Get location of a variable from a shader
+            ///
+            /// \param name name of the uniform variable
+            /// \return location as int
+            int getUniLocation(std::string &name) const;
     }; // class Shader
 } // SW
 

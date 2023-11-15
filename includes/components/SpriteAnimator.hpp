@@ -18,14 +18,12 @@ namespace sw {
 
     class SW_MODULE_EXPORT SpriteAnimator : public sw::Component {
         public:
-
             /// \brief Define the type of the animation
             enum AnimType {
-                ANIM_SPRITE,
-                ANIM_LINE
+                ANIM_SPRITE,    // One animation on the whole texture
+                ANIM_LINE       // One animation per line
             };
 
-        public:
             /// \brief Default constructor
             ///
             /// \param gameObject Reference to the gameObject
@@ -40,14 +38,14 @@ namespace sw {
             /// \brief Reset your animation (set on first frame)
             void reset();
 
-            /// \brief Return a bool if the animation is playing
+            /// \brief Return a bool if the animation is currently playing
             ///
             /// \return bool
             [[nodiscard]] bool isPlaying() const;
 
-            /// \brief Set your animation in loop or not
+            /// \brief Define if your animation loop
             ///
-            /// \param loop
+            /// \param loop boolean
             /// \param delay delay between two animation
             /// \return reference to your sprite SpriteAnimator
             SpriteAnimator &setLoop(bool loop, float delay = 0);
@@ -63,13 +61,13 @@ namespace sw {
 
             /// \brief Define the displayed rect on your texture
             ///
-            /// \param rect
+            /// \param rect Rect's size (width, height)
             /// \return reference to your sprite SpriteAnimator
             SpriteAnimator &setRect(sw::Vector2u rect);
 
             /// \brief Define the speed (number of frame per second) of your animation
             ///
-            /// \param fps
+            /// \param fps float
             /// \return reference to your sprite
             SpriteAnimator &setFPS(float fps);
 
@@ -85,8 +83,7 @@ namespace sw {
             /// \return reference to your sprite
             SpriteAnimator &setPlayOnStart(bool value);
 
-
-            /// \brief Get id the animation is set to loop
+            /// \brief Get if the animation loop
             ///
             /// \return bool
             [[nodiscard]]const bool &isLoop() const;
@@ -103,7 +100,7 @@ namespace sw {
 
             /// \brief Get the speed of your animation
             ///
-            /// \return float In Frame per second
+            /// \return float Frame per second
             [[nodiscard]]const float &getFPS() const;
 
             /// \brief Get the type of your animation

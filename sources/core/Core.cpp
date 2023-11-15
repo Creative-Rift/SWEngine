@@ -13,8 +13,8 @@
 
 SW_MODULE_EXPORT sw::SceneManager sw::Core::m_sceneManager{};
 SW_MODULE_EXPORT sw::ResourcesManager sw::Core::m_resourceManager{};
-SW_MODULE_EXPORT sw::Chronos sw::Core::m_chronos(sw::Chronos::Wait);
-SW_MODULE_EXPORT sw::Chronos sw::Core::m_chronosWindow(sw::Chronos::Wait);
+SW_MODULE_EXPORT sw::Chronos sw::Core::m_chronos(sw::Chronos::WAIT);
+SW_MODULE_EXPORT sw::Chronos sw::Core::m_chronosWindow(sw::Chronos::WAIT);
 SW_MODULE_EXPORT double sw::Core::m_frameRate{1.0/60.0};
 
 void sw::Core::Start()

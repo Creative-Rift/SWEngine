@@ -46,9 +46,9 @@ namespace sw {
             /// \return A reference to the sprite
             Sprite &setTexture(std::string name);
 
-            /// \brief Define a rect displayed applied on the texture
+            /// \brief Define a sub-rectangle of the texture displayed on the Sprite
             ///
-            /// \param rect Dimension of the rect
+            /// \param rect Dimension (width, height) of the rect
             /// \return A reference to the sprite
             Sprite &setTextureRect(sw::FloatRect rect);
 

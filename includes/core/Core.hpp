@@ -10,7 +10,7 @@
 #include "core/window/Window.hpp"
 #include "scene/sceneManager/SceneManager.hpp"
 #include "resources/ResourcesManager.hpp"
-#include "utils/Chronos.hpp"
+#include "utils/Chrono.hpp"
 
 namespace sw {
 

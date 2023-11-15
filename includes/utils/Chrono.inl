@@ -1,18 +1,18 @@
 /*
 ** ShipWreck Engine v0.1, graphical library made to create games
-** Current file: Chronos.inl
+** Current file: Chrono.inl
 */
 
-inline sw::Chronos::Chronos(State state) :
+inline sw::Chrono::Chrono(State state) :
     m_isRunning(false)
 {
-    if (state == Lauch) {
+    if (state == LAUNCH) {
         m_isRunning = true;
         start();
     }
 }
 
-inline void sw::Chronos::start()
+inline void sw::Chrono::start()
 {
     m_start = std::chrono::steady_clock::now();
     m_end = m_start;
@@ -20,18 +20,18 @@ inline void sw::Chronos::start()
     m_isRunning = true;
 }
 
-inline void sw::Chronos::stop()
+inline void sw::Chrono::stop()
 {
     m_end = std::chrono::steady_clock::now();
     m_isRunning = false;
 }
 
-inline void sw::Chronos::tour()
+inline void sw::Chrono::tour()
 {
     m_tour = std::chrono::steady_clock::now();
 }
 
-inline double sw::Chronos::getElapsedTime() const
+inline double sw::Chrono::getElapsedTime() const
 {
     if (m_isRunning)
         m_end = std::chrono::steady_clock::now();
@@ -39,7 +39,7 @@ inline double sw::Chronos::getElapsedTime() const
     return (step / 1000);
 }
 
-inline double sw::Chronos::getTotalTime() const
+inline double sw::Chrono::getTotalTime() const
 {
     if (m_isRunning)
         m_end = std::chrono::steady_clock::now();
@@ -47,7 +47,7 @@ inline double sw::Chronos::getTotalTime() const
     return (step / 1000);
 }
 
-inline bool sw::Chronos::isRunning() const
+inline bool sw::Chrono::isRunning() const
 {
     return (m_isRunning);
 }

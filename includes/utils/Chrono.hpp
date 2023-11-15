@@ -1,38 +1,37 @@
 /*
 ** ShipWreck Engine v0.1, graphical library made to create games
-** Current file: Chrono.hpp
+** Current file: chrono.hpp
 */
 
-#ifndef SHIPWRECK_ENGINE_CHRONOS_HPP
-#define SHIPWRECK_ENGINE_CHRONOS_HPP
+#ifndef SHIPWRECK_ENGINE_CHRONO_HPP
+#define SHIPWRECK_ENGINE_CHRONO_HPP
 
 #include <chrono>
 
 namespace sw {
 
-    class Chronos {
+    class Chrono {
 
     public:
         enum State {
-            Wait, Lauch
+            WAIT, LAUNCH
         };
 
-        /// @brief Default @c Constructor of a @b Chrono.
+        /// @brief Default Constructor
         /// You can define the constructor status, whether or not it should
         /// be run when created.
         ///
-        /// @param state 'Lauch' if you want to start the chrono directly after
-        /// have been created, 'Wait' otherwise.
-        explicit Chronos(State state = Wait);
+        /// @param state 'LAUNCH' if you want to start the chrono directly after
+        /// have been created, 'WAIT' otherwise.
+        explicit Chrono(State state = WAIT);
 
-        /// @brief Default @c Destructor of a @b Chrono.
-        ~Chronos() = default;
+        /// @brief Default Destructor of a chrono.
+        ~Chrono() = default;
 
-        /// @brief Start the @b Chrono.
+        /// @brief Start the chrono.
         void start();
 
-        /// @brief Stop the @b Chrono. Then, if you try get the time, it will
-        /// not change.
+        /// @brief Stop the chrono.
         void stop();
 
         /// @brief Make a checkpoint. Then, you can either get the time since
@@ -44,40 +43,39 @@ namespace sw {
         /// @return The time in second.
         double getElapsedTime() const;
 
-        /// @brief Get the time since the start of the @b Chrono
-        /// (call to the start function).
+        /// @brief Get the time since the start of the chrono (call to the start function).
         ///
         /// @return The time in second.
         double getTotalTime() const;
 
-        /// @brief Get the status of the @b Chrono.
+        /// @brief Get the status of the chrono.
         ///
         /// @return True if it is running, false otherwise.
         [[nodiscard]] bool isRunning() const;
 
     private:
-        /// @brief The start time point of a @b Chrono.
+        /// @brief The start time point of a chrono.
         /// It is set at all call to the start method.
         std::chrono::time_point <std::chrono::steady_clock> m_start;
 
-        /// @brief The tour time point of a @b Chrono.
+        /// @brief The tour time point of a chrono.
         /// It is set at all call to the tour method.
         std::chrono::time_point <std::chrono::steady_clock> m_tour;
 
-        /// @brief The last time point of a @b Chrono. It is corresponding to
-        /// either the current time or the time you stoped or paused the @b Chrono.
+        /// @brief The last time point of a chrono. It is corresponding to
+        /// either the current time or the time you stoped or paused the chrono.
         /// It is set when the time is get.
         mutable std::chrono::time_point <std::chrono::steady_clock> m_end;
 
         /// @brief The status of the chrono.
         /// If it is true, the chrono is running. If it is false, the chrono
-        /// is either paused or stoped.
+        /// is either paused or stopped.
         bool m_isRunning;
 
-    }; // class Chronos
+    }; // class Chrono
 
-#include "Chronos.inl"
+#include "Chrono.inl"
 
 } // SW
 
-#endif //SHIPWRECK_ENGINE_CHRONOS_HPP
+#endif //SHIPWRECK_ENGINE_CHRONO_HPP
