@@ -6,15 +6,15 @@
 #include "components/Sprite.hpp"
 #include "core/Core.hpp"
 
-sw::Sprite::Sprite(sw::GameObject& gameObject) :
-sw::Component(gameObject),
-m_vertexArray{},
-// m_material(),
-m_color(),
-m_rect(),
-m_invertedX(false),
-m_invertedY(false),
-m_shader(std::make_shared<sw::Shader>())
+sw::Sprite::Sprite(sw::GameObject &gameObject) :
+        sw::Component(gameObject),
+        m_vertexArray{},
+        // m_material(),
+        m_color(),
+        m_rect(),
+        m_invertedX(false),
+        m_invertedY(false),
+        m_shader(std::make_shared<sw::Shader>())
 {
     m_rect = {0.0f, 0.0f, 100, 100};
 }
@@ -34,11 +34,11 @@ sw::Sprite &sw::Sprite::setTexture(std::string name)
     auto texture = sw::Core::GetResourceManager().GetTexture(name);
     // m_material.setTexture(name);
     m_texture = texture;
-    m_rect = {0.0f, 0.0f, (float)texture->getWidth(), (float)texture->getHeight()};
+    m_rect = {(float) texture->getHeight(), 0.0f, (float) texture->getWidth(), (float) texture->getHeight()};
     return (*this);
 }
 
-sw::Sprite &sw::Sprite::setTextureRect(sw::FloatRect &rect)
+sw::Sprite &sw::Sprite::setTextureRect(sw::FloatRect rect)
 {
     m_rect = rect;
     return (*this);
@@ -54,13 +54,13 @@ sw::Sprite &sw::Sprite::setColor(const sw::Color &color)
     return (*this);
 }
 
-sw::Sprite& sw::Sprite::flipOnX(bool invert)
+sw::Sprite &sw::Sprite::flipOnX(bool invert)
 {
     m_invertedX = invert;
     return (*this);
 }
 
-sw::Sprite& sw::Sprite::flipOnY(bool invert)
+sw::Sprite &sw::Sprite::flipOnY(bool invert)
 {
     m_invertedY = invert;
     return (*this);

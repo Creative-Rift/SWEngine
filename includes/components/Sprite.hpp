@@ -50,7 +50,7 @@ namespace sw {
             ///
             /// \param rect Dimension of the rect
             /// \return A reference to the sprite
-            Sprite &setTextureRect(sw::FloatRect &rect);
+            Sprite &setTextureRect(sw::FloatRect rect);
 
             /// \brief Define a color (this color is multiplied with the texture pixels)
             ///

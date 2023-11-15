@@ -26,30 +26,24 @@ namespace sw {
             };
 
         public:
-
             /// \brief Default constructor
             ///
             /// \param gameObject Reference to the gameObject
             explicit SpriteAnimator(sw::GameObject &gameObject);
 
-
             /// \brief Play your animation
             void play();
-
 
             /// \brief Pause on your animation
             void pause();
 
-
             /// \brief Reset your animation (set on first frame)
             void reset();
-
 
             /// \brief Return a bool if the animation is playing
             ///
             /// \return bool
             [[nodiscard]] bool isPlaying() const;
-
 
             /// \brief Set your animation in loop or not
             ///
@@ -58,16 +52,14 @@ namespace sw {
             /// \return reference to your sprite SpriteAnimator
             SpriteAnimator &setLoop(bool loop, float delay = 0);
 
-
             /// \brief If you have one animation per line on your texture, you can define
-            ///        the line you want here and the number of the frame (if you have
-            ///        les frame than the length of your texture)
+            ///        the line you want and the number of the frame (if you have
+            ///        less frame than the length of your texture)
             ///
-            /// \param line Number of the line where the animation is (start below of the texture)
+            /// \param line Number of the line where the animation is
             /// \param end Number of frame in your animation
             /// \return reference to your sprite SpriteAnimator
             SpriteAnimator &setLine(int line, int end = -1);
-
 
             /// \brief Define the displayed rect on your texture
             ///
@@ -75,20 +67,17 @@ namespace sw {
             /// \return reference to your sprite SpriteAnimator
             SpriteAnimator &setRect(sw::Vector2u rect);
 
-
             /// \brief Define the speed (number of frame per second) of your animation
             ///
             /// \param fps
             /// \return reference to your sprite
             SpriteAnimator &setFPS(float fps);
 
-
             /// \brief Define the type of your animation. See AnimationType
             ///
             /// \param type Type of your animation
             /// \return reference to your sprite
             SpriteAnimator &setAnimType(AnimType type);
-
 
             /// \brief Define if the Animation will play on start
             ///
@@ -102,30 +91,25 @@ namespace sw {
             /// \return bool
             [[nodiscard]]const bool &isLoop() const;
 
-
             /// \brief Get the displayed rect
             ///
             /// \return sw::Rect
             [[nodiscard]]const sw::Vector2u &getRect() const;
-
 
             /// \brief Get the delay of your animation loop
             ///
             /// \return float
             [[nodiscard]]const float &getLoopDelay() const;
 
-
             /// \brief Get the speed of your animation
             ///
             /// \return float In Frame per second
             [[nodiscard]]const float &getFPS() const;
 
-
             /// \brief Get the type of your animation
             ///
             /// \return AnimType
             [[nodiscard]]AnimType &getAnimType();
-
 
             /// \brief Get if the animation will play on start
             ///

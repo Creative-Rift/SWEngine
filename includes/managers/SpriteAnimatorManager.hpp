@@ -11,7 +11,7 @@
 
 namespace sw {
 
-    class SpriteAnimatorManager : public AManager<SpriteAnimator>{
+    class SW_MODULE_EXPORT SpriteAnimatorManager : public AManager<SpriteAnimator>{
         public:
             /// \brief Default constructor of the AManager class
             using sw::AManager<SpriteAnimator>::AManager;

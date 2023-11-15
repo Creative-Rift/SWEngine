@@ -4,9 +4,10 @@
 */
 
 template<ClassComponent Cpt, typename... Args>
-inline Cpt &sw::GameObject::createComponent(Args... values) {
+inline Cpt& sw::GameObject::createComponent(Args... values)
+{
     auto managerName = std::string(typeid(Cpt).name());
-    sw::AManager<Cpt> &manager = m_scene.getManager<sw::AManager<Cpt>>(managerName.append("Manager"));
+    sw::AManager<Cpt>& manager = m_scene.getManager<sw::AManager<Cpt>>(managerName.append("Manager"));
 
     //if (manager.hasComponent(m_name))
     //    sw::Speech::Warning(sw::Log::warning516(FUNCTION, m_name, managerName)); // TODO: add log
@@ -14,17 +15,19 @@ inline Cpt &sw::GameObject::createComponent(Args... values) {
 }
 
 template<ClassComponent Cpt>
-inline bool sw::GameObject::hasComponent() const {
+inline bool sw::GameObject::hasComponent() const
+{
     auto managerName = typeid(Cpt).name();
     return (m_scene.getManager(managerName).hasComponent(m_id));
 }
 
-template<ClassComponent Cpt>
-inline Cpt &sw::GameObject::getComponent()
-try {
+template <ClassComponent Cpt>
+inline Cpt& sw::GameObject::getComponent()
+try
+{
     auto managerName = std::string(typeid(Cpt).name());
     return (m_scene.getManager<sw::AManager<Cpt>>(managerName.append("Manager")).getComponent(m_id));
 }
-catch (sw::Error &err) {
+catch (sw::Error& err) {
     throw sw::Error("Component not found");
 }
