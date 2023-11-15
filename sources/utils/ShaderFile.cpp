@@ -11,19 +11,19 @@
 #include "utils/exception/Error.hpp"
 
 sw::ShaderFile::ShaderFile(std::string shaderFile, sw::ShaderFile::ShaderType type) :
-m_shaderContent{},
-m_id{0},
-m_success{},
-m_info{},
-m_type{type}
+        m_shaderContent{},
+        m_id{0},
+        m_success{},
+        m_info{},
+        m_type{type}
 {
     std::fstream file(shaderFile);
-    std::stringstream ss;
-
-    if (!file.is_open())
-        throw sw::Error("File " + shaderFile + " cannot be open");
-    ss << file.rdbuf();
-    m_shaderContent = ss.rdbuf()->str();
+    if (file.is_open()) {
+        std::stringstream ss;
+        ss << file.rdbuf();
+        m_shaderContent = ss.rdbuf()->str();
+    } else
+        m_shaderContent = shaderFile;
     file.close();
 }
 

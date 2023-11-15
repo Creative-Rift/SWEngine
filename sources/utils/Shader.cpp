@@ -10,12 +10,53 @@
 
 #include "utils/Shader.hpp"
 
+const std::string defaultFragmentShader = "#version 460 core\n"
+                                  "out vec4 FragColor;\n"
+                                  "\n"
+                                  "in vec4 ourColor;\n"
+                                  "in vec2 TexCoord;\n"
+                                  "\n"
+                                  "uniform sampler2D ourTexture;\n"
+                                  "uniform int hasTexture;\n"
+                                  "\n"
+                                  "void main()\n"
+                                  "{\n"
+                                  "    if (hasTexture == 0) {\n"
+                                  "        FragColor = ourColor;\n"
+                                  "    } else {\n"
+                                  "        vec4 texColor = texture(ourTexture, TexCoord);\n"
+                                  "        if(texColor.a < 0.1)\n"
+                                  "            discard;\n"
+                                  "        FragColor = ourColor * texColor;\n"
+                                  "    }\n"
+                                  "}";
+
+const std::string defaultVertexShader = "#version 460 core\n"
+                                        "\n"
+                                        "layout (location = 0) in vec3 aPos;\n"
+                                        "layout (location = 1) in vec4 aColor;\n"
+                                        "layout (location = 2) in vec2 aTexCoord;\n"
+                                        "\n"
+                                        "uniform mat4 model;         // Transform\n"
+                                        "uniform mat4 view;          // camera pos\n"
+                                        "uniform mat4 projection;    // Ortho or projection\n"
+                                        "\n"
+                                        "out vec4 ourColor;\n"
+                                        "out vec2 TexCoord;\n"
+                                        "\n"
+                                        "void main()\n"
+                                        "{\n"
+                                        "    gl_Position = projection * view * model * vec4(aPos, 1.0);\n"
+                                        "    ourColor = aColor;\n"
+                                        "    TexCoord = aTexCoord;\n"
+                                        "}";
+
 sw::Shader::Shader() :
 m_id(0),
-m_fragment("resources/shaders/default.fs.glsl", sw::ShaderFile::FRAGMENT),
-m_vertex("resources/shaders/default.vs.glsl", sw::ShaderFile::VERTEX),
-m_fragmentPath("resources/shaders/default.fs.glsl"),
-m_vertexPath("resources/shaders/default.vs.glsl"),
+m_fragment(defaultFragmentShader, sw::ShaderFile::FRAGMENT),
+m_vertex(defaultVertexShader, sw::ShaderFile::VERTEX),
+m_fragmentPath(""),
+m_vertexPath(""),
 m_success(),
 m_info(),
 m_loaded(false)
