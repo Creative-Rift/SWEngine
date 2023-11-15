@@ -6,6 +6,7 @@
 #ifndef SHIPWRECK_ENGINE_MONITOR_HPP
 #define SHIPWRECK_ENGINE_MONITOR_HPP
 
+#define GLFW_INCLUDE_NONE
 #include "GLFW/glfw3.h"
 #include "utils/Vector2.hpp"
 

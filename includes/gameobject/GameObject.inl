@@ -26,7 +26,7 @@ inline Cpt& sw::GameObject::getComponent()
 try
 {
     auto managerName = std::string(typeid(Cpt).name());
-    return (m_scene.getManager<sw::AManager<Cpt>>(managerName.append("Manager"))[m_name]);
+    return (m_scene.getManager<sw::AManager<Cpt>>(managerName.append("Manager")).getComponent(m_id));
 }
 catch (sw::Error& err) {
     throw sw::Error("Component not found");

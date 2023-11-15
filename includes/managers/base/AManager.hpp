@@ -129,11 +129,17 @@ namespace sw {
             /// @return The layer of the wanted @b Component.
             [[nodiscard]] virtual int getLayer(const boost::uuids::uuid &gameObjectId) const;
 
-            /// @brief Get a Component/
+            /// @brief Get a Component
             ///
             /// @param gameObjectName
             /// @return sw::Cpt&
             // Cpt& getComponent(const std::string& gameObjectName);
+
+            /// @brief Get a Component
+            ///
+            /// @param gameObjectName
+            /// @return sw::Cpt&
+            Cpt& getComponent(const boost::uuids::uuid &gameObjectId);
 
         protected:
             std::string m_name;
