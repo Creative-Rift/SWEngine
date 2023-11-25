@@ -7,11 +7,14 @@ template<ClassComponent Cpt, typename... Args>
 inline Cpt& sw::GameObject::createComponent(Args... values)
 {
     auto managerName = std::string(typeid(Cpt).name());
-    sw::AManager<Cpt>& manager = m_scene.getManager<sw::AManager<Cpt>>(managerName.append("Manager"));
+    // sw::AManager<Cpt>& manager = m_scene.getManager<sw::AManager<Cpt>>(managerName.append("Manager"));
 
     //if (manager.hasComponent(m_name))
     //    sw::Speech::Warning(sw::Log::warning516(FUNCTION, m_name, managerName)); // TODO: add log
-    return (m_scene.getManager<sw::AManager<Cpt>>(managerName).createComponent(m_id, values...));
+    if (std::is_base_of<sw::Script, Cpt>::value)
+        return (m_scene.getManager<sw::AManager<sw::Script>>(typeid(sw::AManager<sw::Script>).name()).createComponent(m_id, values...));
+    else
+        return (m_scene.getManager<sw::AManager<Cpt>>(managerName).createComponent(m_id, values...));
 }
 
 template<ClassComponent Cpt>

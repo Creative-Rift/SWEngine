@@ -13,6 +13,7 @@
 #include "managers/TransformManager.hpp"
 #include "managers/SpriteManager.hpp"
 #include "managers/SpriteAnimatorManager.hpp"
+#include "managers/ScriptManager.hpp"
 
 sw::Scene::Scene(const std::string name) :
 m_name(name),
@@ -31,6 +32,7 @@ void sw::Scene::load()
     createManager<sw::TransformManager>();
     createManager<sw::SpriteManager>();
     createManager<sw::SpriteAnimatorManager>();
+    createManager<sw::ScriptManager>();
 
     for (auto& [_, manager] : m_managers)
         manager->load();
@@ -76,7 +78,7 @@ void sw::Scene::updatePhysic()
 
 void sw::Scene::updateLogic()
 {
-
+    getManager<sw::ScriptManager>(typeid(sw::ScriptManager).name()).onUpdate();
 }
 
 void sw::Scene::updateGraphics()

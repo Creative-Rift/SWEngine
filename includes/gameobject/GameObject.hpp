@@ -7,6 +7,7 @@
 #define SHIPWRECK_ENGINE_GAMEOBJECT_HPP
 
 #include <string>
+#include <concepts>
 
 #include "boost/uuid/uuid.hpp"
 
@@ -18,6 +19,7 @@
 namespace sw {
 
     class Transform;
+    class Script;
 
     class SW_MODULE_EXPORT GameObject : public IGameObject{
         public:
