@@ -8,12 +8,13 @@
 #define SHIPWRECK_ENGINE_COMPONENT_HPP
 
 #include <string>
+#include "SWEngine.hpp"
 
 namespace sw {
 
     class GameObject;
 
-    class Component {
+    class SW_MODULE_EXPORT Component {
         public:
             Component() = delete;
             Component(Component const&) = delete;

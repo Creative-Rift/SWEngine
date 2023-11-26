@@ -3,6 +3,7 @@
 ** Current file: Script.cpp
 */
 
+#include <iostream>
 #include "components/Script.hpp"
 
 sw::Script::Script(sw::GameObject &gameObject) :
@@ -10,7 +11,9 @@ sw::Script::Script(sw::GameObject &gameObject) :
 {}
 
 void sw::Script::onStart()
-{}
+{
+    std::cout << "Start Script" << std::endl;
+}
 
 void sw::Script::onUpdate()
 {}

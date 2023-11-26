@@ -6,11 +6,12 @@
 #ifndef SHIPWRECK_ENGINE_SCRIPT_HPP
 #define SHIPWRECK_ENGINE_SCRIPT_HPP
 
+#include "SWEngine.hpp"
 #include "base/Component.hpp"
 
 namespace sw {
 
-    class Script : public Component {
+    class SW_MODULE_EXPORT Script : public Component {
         public:
             explicit Script(GameObject& gameObject);
             virtual void onStart();

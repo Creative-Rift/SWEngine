@@ -12,9 +12,9 @@ inline Cpt& sw::GameObject::createComponent(Args... values)
     //if (manager.hasComponent(m_name))
     //    sw::Speech::Warning(sw::Log::warning516(FUNCTION, m_name, managerName)); // TODO: add log
     if (std::is_base_of<sw::Script, Cpt>::value)
-        return (m_scene.getManager<sw::AManager<sw::Script>>(typeid(sw::AManager<sw::Script>).name()).createComponent(m_id, values...));
+        return (m_scene.getManager<sw::AManager<Cpt>>("class sw::ScriptManager").createComponent(m_id, values...));
     else
-        return (m_scene.getManager<sw::AManager<Cpt>>(managerName).createComponent(m_id, values...));
+        return (m_scene.getManager<sw::AManager<Cpt>>(managerName + "Manager").createComponent(m_id, values...));
 }
 
 template<ClassComponent Cpt>

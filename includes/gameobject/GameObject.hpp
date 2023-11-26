@@ -12,6 +12,7 @@
 #include "boost/uuid/uuid.hpp"
 
 #include "gameobject/IGameObject.hpp"
+#include "components/Script.hpp"
 #include "SWEngine.hpp"
 #include "scene/Scene.hpp"
 #include "managers/base/AManager.hpp"
@@ -19,7 +20,6 @@
 namespace sw {
 
     class Transform;
-    class Script;
 
     class SW_MODULE_EXPORT GameObject : public IGameObject{
         public:

@@ -74,7 +74,7 @@ namespace sw {
 
             /// @brief Create a Component for a GameObject.
             ///
-            /// @param gameObjectName
+            /// @param gameObjectId
             /// @param args Arguments for the Component constructor.
             /// @return sw::Cpt
             template <typename... Args>
